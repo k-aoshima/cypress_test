@@ -115,12 +115,12 @@ function TaskManagement() {
       <TableContainer>
         <Table>
           <TableHead>
-            <TableRow>
-              <TableCell>
+            <TableRow key="tableHeadRow">
+              <TableCell key="cell1">
               </TableCell>
-              <TableCell>
+              <TableCell key="cell2">
               </TableCell>
-              <TableCell>
+              <TableCell key="cell3">
               </TableCell>
             </TableRow>
           </TableHead>
