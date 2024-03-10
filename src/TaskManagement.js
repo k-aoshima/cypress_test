@@ -17,6 +17,8 @@ import {
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { Box } from '@mui/system';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 function TaskManagement() {
   const [taskList, setTaskList] = useState([]);
@@ -112,6 +114,25 @@ function TaskManagement() {
 
   return (
     <>
+      <Box style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <TextField
+          value={taskText}
+          label="Todoを入力"
+          variant="standard" 
+          size="small"
+          style={{ flexGrow: 1, marginRight: '8px' }}
+          onChange={(e) => {setTaskText(e.target.value)}}
+        />
+        <Button
+          variant="contained"
+          onClick={() => addTask(taskText)}
+          sx={{textTransform: 'none'}}
+          endIcon={<AddCircleIcon sx={{ fontSize: 'small' }}/>}
+        >
+          ADD
+        </Button>
+      </Box>
+
       <TableContainer>
         <Table>
           <TableHead>
@@ -124,6 +145,7 @@ function TaskManagement() {
               </TableCell>
             </TableRow>
           </TableHead>
+
           <TableBody>
             {taskList.map((user, index) => (
               <>
@@ -162,28 +184,7 @@ function TaskManagement() {
               />
               </>
             ))}
-            <TableRow>
-              <TableCell>
-              </TableCell>
-              <TableCell>
-                <TextField
-                  value={taskText}
-                  label="Todoを入力"
-                  variant="standard" 
-                  size="small"
-                  fullWidth
-                  onChange={(e) => {setTaskText(e.target.value)}}
-                />
-              </TableCell>
-              <TableCell>
-                <Button
-                  variant="outlined"
-                  onClick={() => addTask(taskText)}
-                >
-                  ＋
-                </Button>
-              </TableCell>
-            </TableRow>
+            
           </TableBody>
         </Table>
       </TableContainer>
